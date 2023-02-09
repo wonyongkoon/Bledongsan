@@ -1,0 +1,49 @@
+.LoginPage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.LoginPage_Content{
+    margin-top: 100px;
+    width: 400px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+.LoginPage_Content_UserInput{
+
+
+}
+
+/* 로그인 인풋 (아이디, 비번) */
+.LoginPage_Content_UserInput > input{
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+}
+
+/* 로그인 버튼 */
+.LoginPage_Content > button{
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.LoginPage_Content > span{
+    color: #156EE5;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.LoginPage_Content > span:hover{
+    text-decoration: underline;
+}

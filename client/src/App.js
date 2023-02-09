@@ -6,6 +6,7 @@ import Market from './Page/Market';
 import LoginPage from './Page/LoginPage';
 import MyPage from './Page/MyPage';
 import Investment from './Page/Investment';
+import SignUp from './Page/SignUp';
 import Header from './Page/Header';
 
 
@@ -21,7 +22,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/investment" element={<Investment />}></Route>
-
+          <Route path="/signup" element={<SignUp />}></Route>
           {/* 상단에서 찾는 링크가 없을 경우 페이지 출력 */}
           {/* <Route path="*" element={<NotFound />}></Route> */}
         </Routes>

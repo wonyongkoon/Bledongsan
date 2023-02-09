@@ -1,0 +1,26 @@
+.SignUp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.SignUp_Content{
+    margin-top: 100px;
+    width: 400px;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+/* 사용자 입력 */
+.SignUp_Content > input{
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+    width: 300px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.2);
+}

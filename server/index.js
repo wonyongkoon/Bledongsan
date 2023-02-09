@@ -13,6 +13,7 @@ const PORT = process.env.PORT;
 
 app.listen(PORT, function(){
     console.log(`${PORT} 서버에 연결되었습니다.`)
+    
 });
 
-// app.use('/user',require('./routes/user.route')) // 유저
+app.use('/user',require('./routes/user.route')) // 유저
