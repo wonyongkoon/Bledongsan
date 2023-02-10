@@ -11,7 +11,6 @@ const connection = mysql.createConnection({
     
 });
 
-
 connection.connect();   // DB 접속
 
 // BLEDONGSAN_DB 라는 DATABASE 생성 : CREATE DATABASE if not exists <DATABASE NAME>
@@ -28,7 +27,7 @@ connection.query("USE BLEDONGSAN_DB", function(err, result){
 })
 
 // users 라는 테이블 생성 
-connection.query("CREATE TABLE if not exists users(id int(100) NOT NULL AUTO_INCREMENT PRIMARY KEY ,user_address varchar(255), user_nickname varchar(255), user_tokenamount float)", 
+connection.query("CREATE TABLE if not exists users(id int(100) NOT NULL AUTO_INCREMENT PRIMARY KEY ,user_id varchar(255), user_password varchar(255), user_address varchar(255), user_name varchar(255))", 
 function(err, result){
     if(err) return console.log(err);
 })

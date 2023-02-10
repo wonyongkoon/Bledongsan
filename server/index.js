@@ -4,6 +4,8 @@ const dotenv = require("dotenv");
 const app = express();
 const cookieParser = require('cookie-parser');
 
+
+
 dotenv.config();            // env 파일 사용
 app.use(express.json({limit: '100mb'}));   // express에서 body에 json을 읽어오기 위해 선언
 app.use(cookieParser());
@@ -16,4 +18,5 @@ app.listen(PORT, function(){
     
 });
 
-app.use('/user',require('./routes/user.route')) // 유저
+app.use('/user',require('./routes/user.route'))   // 유저
+// require("./routes/index.js")(app);
