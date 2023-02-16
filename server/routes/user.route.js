@@ -15,8 +15,8 @@ const controller = require('../controllers/user.controller')
 //     })
 // })
 
-router.get('/findAllUsers', controller.findAllUsers)
-router.post('/signUpUser', controller.signUpUser)
-
+router.get('/findAllUsers', controller.findAllUsers)    // 모든 유저 정보 받기
+router.post('/signUpUser', controller.signUpUser)   // 유저 회원가입
+router.post('/idDuplicateCheck', controller.idDuplicateCheck)    // 유저 아이디 중복검사
 
 module.exports = router;

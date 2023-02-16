@@ -22,17 +22,39 @@ const SignUp = () => {
     const [passwordConfirmMessage, setPasswordConfirmMessage] = useState('')  //비밀번호 확인
     const [nickNameMessage, setNickNameMessage] = useState('')  //닉네임
     
+
+
+
+    useEffect(() => {
+        // 계정 중복 검사
+        axios
+            .post("http://localhost:8000/user/idDuplicateCheck", {
+                user_id : userId,
+            })
+            .then(function (response) {
+                if(response.data === "중복"){
+                    setIsUserId(false)
+                    setUserIdMessage("이미 가입된 계정입니다.")
+                }
+                console.log(response.data)
+            })
+            .catch((Error) => {
+                // console.log(Error)
+
+            })
+    })
+
     // 유저 아이디 입력(input) 감지
     const onChangeUserId = (e) => {
         setUserId(e.target.value)
         const checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
-
+        
         if (checkSpc.test(e.target.value)) {
             setIsUserId(false)
             setUserIdMessage('아이디에 특수문자는 넣을 수 없습니다.')
         } else if (e.target.value.length === 0) {
             setIsUserId(false)
-        } else if (!(e.target.value.length >= 5 || e.target.value.length > 15)) {
+        } else if ((e.target.value.length < 5 || e.target.value.length > 15)) {
             setIsUserId(false)
             setUserIdMessage('아이디는 5글자 이상 15글자 미만으로 입력해주세요.')
         } else {
@@ -77,8 +99,7 @@ const SignUp = () => {
     const onChangeUserNickName = (e) => {
         const checkSpc = /[~!@#$%^&*()_+|<>?:{}]/;
         setUserNickName(e.target.value)
-        
-        // 계정 중복 검사
+
 
         if (checkSpc.test(e.target.value)) {
           setIsNickName(false)
