@@ -85,3 +85,66 @@ module.exports.idDuplicateCheck = (req, res) =>{
         console.log(err);
     }
 }
+
+// 유저 로그인
+module.exports.userLogin = (req, res) =>{
+    try{
+        const user_id = req.body.user_id;   // 유저 아이디
+        const user_password = req.body.user_password;   // 유저 비밀번호
+        console.log(user_id, user_password)
+        // 입력받은 아이디와 패스워드가 일치하는게 있는지 확인
+        connection.query(
+            `SELECT * FROM users where user_id = "${user_id}" AND user_password = "${user_password}"`,
+            function (err, result) {
+                if (err) 
+                    return console.log(err);
+                if (result.length) {
+                    //로그인 성공 시 해당 주소값을 가진 유저의 데이터를 불러옴
+                    connection.query(
+                        `SELECT id, user_id, user_address, user_name FROM users WHERE user_id = "${user_id}"`,
+                        function (err, result) {
+                            // JWT에 담을 계정 정보    
+                            const payload = {
+                                id: result[0].id,
+                                user_id: result[0].user_id,
+                                user_address: result[0].user_address,
+                                user_name: result[0].user_name,
+                            }
+                            console.log(payload)
+                            // // access Token, refresh Token 발급
+                            const accessToken = jwt.sign(payload, process.env.ACCESS_SECRET, {
+                                expiresIn: '24h',   // 지속시간
+                                issuer: 'About tech'
+                            });
+                            const refreshToken = jwt.sign(payload, process.env.REFRECH_SECRET, {
+                                expiresIn: '24h',
+                                issuer: 'About tech'
+                            });
+                            // // 토큰을 쿠키로 전송
+                            res.cookie('accessToken', accessToken, {
+                                secure: false,
+                                httpOnly: true
+                            });
+                            res.cookie('refreshToken', refreshToken, {
+                                secure: false,
+                                httpOnly: true
+                            });
+    
+                            res
+                                .status(200)
+                                .send(payload);
+                        }
+                    )
+                } else {
+                    res
+                        .status(400)
+                        .send("등록된 계정이 없습니다. 회원가입을 진행해 주세요");
+                }
+            }
+        )
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
